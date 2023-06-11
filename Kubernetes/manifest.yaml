@@ -1,32 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: customer-app
+  name: backend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: customer-app
+      app: backend
   template:
     metadata:
       labels:
-        app: customer-app
+        app: backend
     spec:
       containers:
-        - name: customer-app
-          image: acrca.azurecr.io/frontend-image:v1
+        - name: backend
+          image: acrca.azurecr.io/backend-image:latest
           ports:
-            - containerPort: 3001
+            - containerPort: 9000
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: custom-app-service
+  name: backend-service
 spec:
   selector:
-    app: custom-app
+    app: backend
   ports:
     - protocol: TCP
-      port: 3001
-      targetPort: 3001
+      port: 9000
+      targetPort: 9000
   type: LoadBalancer
