@@ -26,8 +26,8 @@ jobs:
 
     - name: Build and push Docker images
       run: |
-          docker build -t acrca.azurecr.io/backend-image:v1
-          docker push acrca.azurecr.io/backend-image:v1
+          docker build -t acrca.azurecr.io/backend-image:latest .
+          docker push acrca.azurecr.io/backend-image:latest
 
     - name: Deploy to AKS
       uses: azure/k8s-set-context@v1
@@ -37,4 +37,4 @@ jobs:
 
     - name: Apply Kubernetes manifests
       run: |
-         kubectl apply -f manifest.yaml
+         kubectl apply -f ./Kubernetes/manifest.yaml
