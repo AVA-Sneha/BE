@@ -16,7 +16,7 @@ spec:
         - name: backend
           image: acrca.azurecr.io/backend-image:latest
           ports:
-            - containerPort: 3000
+            - containerPort: 9000
 ---
 apiVersion: v1
 kind: Service
@@ -27,6 +27,6 @@ spec:
     app: backend
   ports:
     - protocol: TCP
-      port: 3000
-      targetPort: 3000
+      port: 9000
+      targetPort: 9000
   type: LoadBalancer
